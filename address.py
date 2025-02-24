@@ -1,4 +1,3 @@
-
 import re
 import logging
 import os
@@ -13,8 +12,6 @@ logging.basicConfig(
         logging.StreamHandler()  # Also print logs in the console
     ]
 )
-
-logging.info(f"Logging initialized. Log file path: {log_file_path}")
 
 
 class ContactPerson:
@@ -69,6 +66,7 @@ class ContactPerson:
                 f"Phone: {self.phone}\n"
                 f"Email: {self.email}\n")
 
+
 class AddressBook:
     """
     Description:
@@ -95,6 +93,7 @@ class AddressBook:
         try:
             if not isinstance(contact, ContactPerson):
                 raise TypeError("Invalid contact type. Must be a ContactPerson instance.")
+
             full_name = f"{contact.first_name} {contact.last_name}"
             if full_name in self.contacts:
                 logging.warning(f"Contact '{full_name}' already exists.")
@@ -108,6 +107,7 @@ class AddressBook:
         """
         Description:
             Edits an existing contact in the address book.
+        
         Parameters:
             name (str): Full name of the contact to be edited.
             updated_contact (ContactPerson): Updated contact object.
@@ -120,8 +120,27 @@ class AddressBook:
                 logging.warning(f"Contact '{name}' not found in the address book.")
         except Exception as e:
             logging.error(f"Error editing contact: {e}")
+    
 
-#edit option code
+    def delete_contact(self, name):
+        """
+        Description:
+        Deletes a contact from the address book.
+    Parameters:
+        name (str): Full name of the contact to be deleted.
+    Return:
+        KeyError: If the contact does not exist."""
+        try:
+            if name in self.contacts:
+                del self.contacts[name]
+                logging.info(f"Contact '{name}' deleted successfully!")
+                print(f"Contact '{name}' has been deleted.")
+            else:
+                logging.warning(f"Contact '{name}' not found in the address book.")
+                print(f"Contact '{name}' not found.")
+        except Exception as e:
+            logging.error(f"Error deleting contact: {e}")
+
     def display_contacts(self):
         """
         Description:
@@ -138,21 +157,24 @@ class AddressBook:
         except Exception as e:
             logging.error(f"Error displaying contacts: {e}")
 
+
 class AddressBookMain:
     """
     Description:
         Provides the main interface for the address book system.
     """
-    @staticmethod
 
+    @staticmethod
     def get_validated_input(prompt, validation_func, error_message):
         """
         Description:
-            Gets user input and validates it using a provided function.    
+            Gets user input and validates it using a provided function.
+        
         Parameters:
             prompt (str): The message displayed to the user.
             validation_func (function): A function that validates the input.
             error_message (str): The error message displayed if validation fails.
+        
         Returns:
             str: Validated user input.
         """
@@ -173,6 +195,7 @@ class AddressBookMain:
         """
         Description:
             Collects user input and creates a new contact.
+        
         Returns:
             ContactPerson: A newly created contact object. 
         """
@@ -182,41 +205,50 @@ class AddressBookMain:
             address = input("Enter Address: ").strip()
             city = input("Enter City: ").strip()
             state = input("Enter State: ").strip()
+
             zip_code = AddressBookMain.get_validated_input(
                 "Enter ZIP Code (6 digits): ",
                 lambda z: z.isdigit() and len(z) == 6,
                 "Invalid ZIP Code! It must be a 6-digit number."
             )
+
             phone = AddressBookMain.get_validated_input(
                 "Enter Phone Number (10 or 12 digits): ",
                 lambda p: p.isdigit() and len(p) in (10, 12),
                 "Invalid Phone Number! It must be 10 or 12 digits long."
             )
+
             email = AddressBookMain.get_validated_input(
                 "Enter Email: ",
                 lambda e: re.match(r"[^@]+@[^@]+\.[^@]+", e),
                 "Invalid Email! Please enter a valid email address."
             )
+
             return ContactPerson(first_name, last_name, address, city, state, int(zip_code), int(phone), email)
 
         except Exception as e:
             logging.error(f"Error creating contact: {e}")
             return None
 
+
 def main():
     """
     Description:
         Entry point of the program. Manages address book operations.
     """
-    logging.info("Address Book Application Started")    
+    logging.info("Address Book Application Started")
+    
     address_book = AddressBook()
+    
     while True:
         try:
             print("\nMenu:")
             print("1. Add Contact")
             print("2. Display Contacts")
             print("3. Edit Contact")
-            print("4. Exit")
+            print("4. Delete Contact")  
+            print("5. Exit")
+
             choice = input("Enter your choice: ").strip()
 
             if choice == "1":
@@ -230,7 +262,10 @@ def main():
                 updated_contact = AddressBookMain.create_contact()
                 if updated_contact:
                     address_book.edit_contact(name, updated_contact)
-            elif choice == "4":
+            elif choice == "4": 
+                name = input("Enter full name of the contact to delete: ").strip()
+                address_book.delete_contact(name)
+            elif choice == "5":
                 logging.info("Exiting Address Book. Goodbye!")
                 print("\nExiting Address Book. Goodbye!\n")
                 break
@@ -239,6 +274,7 @@ def main():
                 print("Invalid choice! Please select a valid option.")
         except Exception as e:
             logging.critical(f"Unexpected error: {e}")
+
 
 if __name__ == "__main__":
     main()
