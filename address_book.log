@@ -42,3 +42,12 @@
 2025-02-25 11:32:05,814 - INFO - New Address Book created: important
 2025-02-25 11:32:59,885 - INFO - Contact added in important: u g g
 2025-02-25 11:33:38,964 - INFO - Exiting Address Book Application.
+2025-02-25 11:46:25,910 - INFO - Address Book System - Logging started.
+2025-02-25 11:46:25,911 - INFO - Address Book System initialized.
+2025-02-25 11:48:18,665 - INFO - Address Book System - Logging started.
+2025-02-25 11:48:18,666 - INFO - Address Book System initialized.
+2025-02-25 11:48:33,660 - INFO - Address Book 'new' created.
+2025-02-25 11:48:33,660 - INFO - Address Book 'new' created.
+2025-02-25 11:49:28,655 - INFO - Contact created: d g
+2025-02-25 11:49:28,656 - INFO - Contact 'd g' added to new.
+2025-02-25 11:49:34,347 - INFO - Displayed Address Book: new
