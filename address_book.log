@@ -34,3 +34,11 @@
 2025-02-25 10:53:38,494 - ERROR - Error creating contact: ZIP code must be a 6-digit number.
 2025-02-25 10:53:45,170 - INFO - Displayed contact: r g
 2025-02-25 10:53:45,170 - INFO - Displayed contact: c g
+2025-02-25 11:20:04,767 - INFO - Address Book System - Logging started.
+2025-02-25 11:20:35,768 - INFO - Address Book System - Logging started.
+2025-02-25 11:21:37,450 - WARNING - Invalid menu choice: python -u "c:\Users\Priyanshu\Documents\Address_Book_Problem\Address_Book_System\address.py"
+2025-02-25 11:23:18,795 - INFO - Address Book System - Logging started.
+2025-02-25 11:31:51,874 - INFO - Address Book System - Logging started.
+2025-02-25 11:32:05,814 - INFO - New Address Book created: important
+2025-02-25 11:32:59,885 - INFO - Contact added in important: u g g
+2025-02-25 11:33:38,964 - INFO - Exiting Address Book Application.
