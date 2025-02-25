@@ -24,3 +24,13 @@
 2025-02-25 10:28:17,446 - INFO - Contact 'r g' updated successfully!
 2025-02-25 10:28:21,024 - INFO - Displayed contact: p g
 2025-02-25 10:28:25,393 - INFO - Exiting Address Book. Goodbye!
+2025-02-25 10:51:08,656 - INFO - Address Book Application Started
+2025-02-25 10:51:08,657 - INFO - Address book initialized.
+2025-02-25 10:51:59,472 - INFO - Contact created: r g
+2025-02-25 10:51:59,473 - INFO - Contact 'r g' added successfully!
+2025-02-25 10:52:58,488 - INFO - Contact created: c g
+2025-02-25 10:52:58,489 - INFO - Contact 'c g' added successfully!
+2025-02-25 10:53:38,493 - ERROR - Error creating contact: ZIP code must be a 6-digit number.
+2025-02-25 10:53:38,494 - ERROR - Error creating contact: ZIP code must be a 6-digit number.
+2025-02-25 10:53:45,170 - INFO - Displayed contact: r g
+2025-02-25 10:53:45,170 - INFO - Displayed contact: c g
