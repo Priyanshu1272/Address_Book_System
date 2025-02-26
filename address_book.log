@@ -69,3 +69,11 @@
 2025-02-26 19:32:47,126 - INFO - Address Book 'system' created.
 2025-02-26 19:34:08,585 - INFO - Contact created: sam garg
 2025-02-26 19:34:08,585 - INFO - Contact 'sam garg' added to system.
+2025-02-26 20:16:09,269 - INFO - Address Book System - Logging started.
+2025-02-26 20:16:09,270 - INFO - Address Book System initialized.
+2025-02-26 20:16:42,792 - INFO - Address Book 'new3' created.
+2025-02-26 20:16:42,793 - INFO - Address Book 'new3' created.
+2025-02-26 20:18:00,246 - INFO - Contact created: harry sharma
+2025-02-26 20:18:00,246 - INFO - Contact 'harry sharma' added to new3.
+2025-02-26 20:20:25,337 - INFO - Contact created: jiya sharma
+2025-02-26 20:20:25,337 - INFO - Contact 'jiya sharma' added to new3.
