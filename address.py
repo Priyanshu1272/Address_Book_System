@@ -20,17 +20,6 @@ class Contact:
     """
     Description:
         Represents a contact in an address book.
-
-    Parameters:
-        name (str): Name of the contact.
-        phone (str): Phone number of the contact.
-        email (str): Email address of the contact.
-        address (str): Street address of the contact.
-        city (str): City where the contact resides.
-        state (str): State where the contact resides.
-
-    Raises:
-        ValueError: If name is empty, phone is invalid, or email format is incorrect.
     """
     def __init__(self, name, phone, email, address, city, state):
         if not name:
@@ -52,10 +41,8 @@ class Contact:
         """
         Description:
             Checks equality between two contacts based on name (case insensitive).
-        
         Parameters:
             other (Contact): Another contact to compare.
-        
         Returns:
             bool: True if names match (case insensitive), False otherwise.
         """
@@ -67,7 +54,6 @@ class Contact:
         """
         Description:
             Defines a unique hash for a contact based on its name.
-        
         Returns:
             int: Hash of the contact name.
         """
@@ -77,7 +63,6 @@ class Contact:
         """
         Description:
             Returns a formatted string representation of the contact.
-        
         Returns:
             str: Formatted contact details.
         """
@@ -87,12 +72,6 @@ class AddressBook:
     """
     Description:
         Represents an address book that stores multiple contacts.
-    
-    Parameters:
-        book_name (str): Name of the address book.
-    
-    Attributes:
-        contacts (set): A set of Contact objects.
     """
     def __init__(self, book_name):
         self.book_name = book_name
@@ -103,7 +82,6 @@ class AddressBook:
         """
         Description:
             Adds a new contact to the address book if it does not already exist.
-        
         Parameters:
             name (str): Contact name.
             phone (str): Phone number.
@@ -111,7 +89,6 @@ class AddressBook:
             address (str): Street address.
             city (str): City.
             state (str): State.
-
         Raises:
             ValueError: If contact details are invalid.
         """
@@ -145,7 +122,6 @@ class AddressBook:
         """
         Description:
             Edits an existing contact in the address book.
-        
         Parameters:
             name (str): Full name of the contact to be edited.
             updated_contact (Contact): Updated contact object.
@@ -168,10 +144,8 @@ class AddressBook:
         """
         Description:
             Deletes a contact from the address book.
-
         Parameters:
             name (str): Full name of the contact to be deleted.
-        
         Returns:
             KeyError: If the contact does not exist.
         """
@@ -192,9 +166,6 @@ class AddressBookSystem:
     """
     Description:
         Manages multiple address books.
-
-    Attributes:
-        address_books (dict): Dictionary to store multiple address books.
     """
     def __init__(self):
         self.address_books = {}
@@ -247,10 +218,8 @@ class AddressBookSystem:
         """
         Description:
             Searches for contacts based only on city across multiple address books.
-
         Parameters:
             city (str, optional): City to search.
-
         Returns:
             list: List of matching Contact objects.
         """
