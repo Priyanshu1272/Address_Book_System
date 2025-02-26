@@ -63,3 +63,9 @@
 2025-02-26 19:14:10,816 - INFO - Address Book 'new1' created.
 2025-02-26 19:15:19,651 - INFO - Contact created: shiva
 2025-02-26 19:15:19,652 - INFO - Contact 'shiva' added to new1.
+2025-02-26 19:32:25,964 - INFO - Address Book System - Logging started.
+2025-02-26 19:32:25,964 - INFO - Address Book System initialized.
+2025-02-26 19:32:47,125 - INFO - Address Book 'system' created.
+2025-02-26 19:32:47,126 - INFO - Address Book 'system' created.
+2025-02-26 19:34:08,585 - INFO - Contact created: sam garg
+2025-02-26 19:34:08,585 - INFO - Contact 'sam garg' added to system.
