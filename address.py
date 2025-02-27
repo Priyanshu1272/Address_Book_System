@@ -16,6 +16,7 @@ logging.basicConfig(
 
 logging.info("Address Book System - Logging started.")
 
+
 class Contact:
     """
     Description:
@@ -24,7 +25,6 @@ class Contact:
     def __init__(self, first_name, last_name, phone, email, address, city, state, zip_code):
         """
     Initializes a new Contact object with the given details.
-
     Parameters:
         first_name (str): The first name of the contact.
         last_name (str): The last name of the contact.
@@ -54,26 +54,11 @@ class Contact:
         self.state = state
         self.zip_code = zip_code
         logging.info(f"Contact created: {self.first_name} {self.last_name}")
-    
-    def __eq__(self, other):
-        """
-        Description:
-            Checks equality between two contacts based on first and last names (case insensitive).
-        Parameters:
-            other (Contact): Another contact to compare.
-        Returns:
-            bool: True if first and last names match (case insensitive), False otherwise.
-        """
-        if isinstance(other, Contact):
-            return (self.first_name.lower() == other.first_name.lower() and 
-                    self.last_name.lower() == other.last_name.lower())
-        return False
 
     def __hash__(self):
         """
         Description:
-            Defines a unique hash for a contact based on its first and last names.
-        
+            Defines a unique hash for a contact based on its first and last names.        
         Returns:
             int: Hash of the contact's first and last names.
         """
@@ -83,7 +68,6 @@ class Contact:
         """
         Description:
             Returns a formatted string representation of the contact.
-        
         Returns:
             str: Formatted contact details.
         """
@@ -93,7 +77,6 @@ class AddressBook:
     """
     Description:
         Represents an address book that stores multiple contacts.
-
     """
     def __init__(self, book_name):
         self.book_name = book_name
@@ -104,7 +87,6 @@ class AddressBook:
         """
         Description:
             Adds a new contact to the address book if it does not already exist.
-        
         Parameters:
             first_name - First name of the contact.
             last_name -Last name of the contact.
@@ -114,10 +96,8 @@ class AddressBook:
             city - City.
             state - State.
             zip_code - 6-digit postal code.
-
         Returns:
             None
-
         """
         try:
             contact = Contact(first_name, last_name, phone, email, address, city, state, zip_code)
@@ -135,7 +115,6 @@ class AddressBook:
         """
         Description:
             Displays all contacts in the address book.
-        
         Returns:
             None
         """
@@ -152,7 +131,6 @@ class AddressBook:
         """
         Description:
             Displays all contacts in the address book sorted alphabetically by name (first then last).
-
         Returns:
             None
         """
@@ -164,6 +142,25 @@ class AddressBook:
         # Sort contacts by first name then last name
         sorted_contacts = sorted(self.contacts, key=lambda contact: (contact.first_name.lower(), contact.last_name.lower()))
         print(f"\nContacts in {self.book_name} (Sorted by Name):")
+        for contact in sorted_contacts:
+            print(contact)
+            logging.info(f"Displayed sorted contact: {contact.first_name} {contact.last_name}")
+
+    def display_contacts_sorted_by_zip(self):
+        """
+        Description:
+            Displays all contacts in the address book sorted by ZIP code.
+        Returns:
+            None
+        """
+        if not self.contacts:
+            print(f"{self.book_name} Address Book is empty.")
+            logging.info(f"{self.book_name} Address Book is empty.")
+            return
+        
+        # Sort contacts by ZIP code
+        sorted_contacts = sorted(self.contacts, key=lambda contact: contact.zip_code)
+        print(f"\nContacts in {self.book_name} (Sorted by ZIP):")
         for contact in sorted_contacts:
             print(contact)
             logging.info(f"Displayed sorted contact: {contact.first_name} {contact.last_name}")
@@ -222,6 +219,8 @@ class AddressBookSystem:
     """
     Description:
         Manages multiple address books.
+    Returns:
+        None
     """
     def __init__(self):
         self.address_books = {}
@@ -232,7 +231,7 @@ class AddressBookSystem:
         Description:
             Creates a new address book if it does not already exist.
         Parameters:
-            book_name (str): Name of the address book.    
+            book_name (str): Name of the address book.
         Returns:
             None
         """
@@ -316,10 +315,8 @@ class AddressBookSystem:
         """
         Description:
             Searches for contacts based on state across multiple address books and displays count by city and state.
-
         Parameters:
             state (str, optional): State to search.
-
         Returns:
             None
         """
@@ -359,7 +356,6 @@ class AddressBookSystem:
         """
         Description:
             Displays the total count of contacts grouped by city and state across all address books.
-
         Returns:
             None
         """
@@ -400,7 +396,8 @@ def main():
         print("8. Delete Contact")
         print("9. Count Contacts by City and State")
         print("10. Display Contacts Sorted by Name")
-        print("11. Exit")
+        print("11. Display Contacts Sorted by ZIP")
+        print("12. Exit")
 
         choice = input("Enter your choice: ").strip()
 
@@ -474,6 +471,13 @@ def main():
             else:
                 print(f"Address Book '{book_name}' does not exist!")
         elif choice == "11":
+            book_name = input("Enter Address Book name: ").strip()
+            address_book = system.get_address_book(book_name)
+            if address_book:
+                address_book.display_contacts_sorted_by_zip()
+            else:
+                print(f"Address Book '{book_name}' does not exist!")
+        elif choice == "12":
             print("Exiting...")
             break
         else:

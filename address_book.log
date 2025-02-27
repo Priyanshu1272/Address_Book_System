@@ -87,3 +87,17 @@
 2025-02-27 10:24:21,812 - INFO - Contact 'Mohan verma' added to new4.
 2025-02-27 10:25:01,838 - INFO - Displayed sorted contact: Mohan verma
 2025-02-27 10:25:01,838 - INFO - Displayed sorted contact: shahid khan
+2025-02-27 11:02:20,376 - INFO - Address Book System - Logging started.
+2025-02-27 11:02:20,377 - INFO - Address Book System initialized.
+2025-02-27 11:02:41,413 - INFO - Address Book 'new5' created.
+2025-02-27 11:02:41,414 - INFO - Address Book 'new5' created.
+2025-02-27 11:04:00,694 - INFO - Address Book System - Logging started.
+2025-02-27 11:04:00,695 - INFO - Address Book System initialized.
+2025-02-27 11:04:10,200 - INFO - Address Book 'new6' created.
+2025-02-27 11:04:10,200 - INFO - Address Book 'new6' created.
+2025-02-27 11:05:29,428 - INFO - Contact created: Priyanshu Garg
+2025-02-27 11:05:29,428 - INFO - Contact 'Priyanshu Garg' added to new6.
+2025-02-27 11:06:47,829 - INFO - Contact created: Shivam Garg
+2025-02-27 11:06:47,829 - INFO - Contact 'Shivam Garg' added to new6.
+2025-02-27 11:07:36,298 - INFO - Displayed sorted contact: Priyanshu Garg
+2025-02-27 11:07:36,299 - INFO - Displayed sorted contact: Shivam Garg
