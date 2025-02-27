@@ -73,6 +73,7 @@ class Contact:
         """
         Description:
             Defines a unique hash for a contact based on its first and last names.
+        
         Returns:
             int: Hash of the contact's first and last names.
         """
@@ -82,6 +83,7 @@ class Contact:
         """
         Description:
             Returns a formatted string representation of the contact.
+        
         Returns:
             str: Formatted contact details.
         """
@@ -91,10 +93,7 @@ class AddressBook:
     """
     Description:
         Represents an address book that stores multiple contacts.
-    Parameters:
-        book_name (str): Name of the address book.
-    Returns:
-        None
+
     """
     def __init__(self, book_name):
         self.book_name = book_name
@@ -105,6 +104,7 @@ class AddressBook:
         """
         Description:
             Adds a new contact to the address book if it does not already exist.
+        
         Parameters:
             first_name - First name of the contact.
             last_name -Last name of the contact.
@@ -114,8 +114,10 @@ class AddressBook:
             city - City.
             state - State.
             zip_code - 6-digit postal code.
+
         Returns:
             None
+
         """
         try:
             contact = Contact(first_name, last_name, phone, email, address, city, state, zip_code)
@@ -133,6 +135,7 @@ class AddressBook:
         """
         Description:
             Displays all contacts in the address book.
+        
         Returns:
             None
         """
@@ -144,6 +147,26 @@ class AddressBook:
         for contact in self.contacts:
             print(contact)
             logging.info(f"Displayed contact: {contact.first_name} {contact.last_name}")
+
+    def display_contacts_sorted_by_name(self):
+        """
+        Description:
+            Displays all contacts in the address book sorted alphabetically by name (first then last).
+
+        Returns:
+            None
+        """
+        if not self.contacts:
+            print(f"{self.book_name} Address Book is empty.")
+            logging.info(f"{self.book_name} Address Book is empty.")
+            return
+        
+        # Sort contacts by first name then last name
+        sorted_contacts = sorted(self.contacts, key=lambda contact: (contact.first_name.lower(), contact.last_name.lower()))
+        print(f"\nContacts in {self.book_name} (Sorted by Name):")
+        for contact in sorted_contacts:
+            print(contact)
+            logging.info(f"Displayed sorted contact: {contact.first_name} {contact.last_name}")
 
     def edit_contact(self, first_name, last_name, updated_contact):
         """
@@ -199,8 +222,6 @@ class AddressBookSystem:
     """
     Description:
         Manages multiple address books.
-    Returns:
-        None
     """
     def __init__(self):
         self.address_books = {}
@@ -211,7 +232,7 @@ class AddressBookSystem:
         Description:
             Creates a new address book if it does not already exist.
         Parameters:
-            book_name (str): Name of the address book.
+            book_name (str): Name of the address book.    
         Returns:
             None
         """
@@ -262,22 +283,28 @@ class AddressBookSystem:
         if not city:
             print("Please provide a city to search.")
             return
+
+        # Collect all contacts across address books
         all_contacts = [contact for book in self.address_books.values() for contact in book.contacts]
         if not all_contacts:
             print("No contacts available in any address book.")
             return
 
+        # Filter contacts by the specified city
         results = [contact for contact in all_contacts if contact.city.lower() == city.lower()]
         
         if results:
             print(f"\nSearch Results for City '{city}':")
             for result in results:
                 print(result)
-    
+            
+            # Count by city (will only show the searched city due to filter)
             city_counts = Counter(contact.city.lower() for contact in results)
             print("\nContact Count by City:")
             for city_name, count in city_counts.items():
                 print(f"{city_name}: {count}")
+
+            # Count by state for the filtered results
             state_counts = Counter(contact.state.lower() for contact in results)
             print("\nContact Count by State:")
             for state_name, count in state_counts.items():
@@ -289,8 +316,10 @@ class AddressBookSystem:
         """
         Description:
             Searches for contacts based on state across multiple address books and displays count by city and state.
+
         Parameters:
             state (str, optional): State to search.
+
         Returns:
             None
         """
@@ -298,22 +327,27 @@ class AddressBookSystem:
             print("Please provide a State to search.")
             return
 
+        # Collect all contacts across address books
         all_contacts = [contact for book in self.address_books.values() for contact in book.contacts]
         if not all_contacts:
             print("No contacts available in any address book.")
             return
 
-        results = [contact for contact in all_contacts if contact.state.lower() == state.lower()]        
+        # Filter contacts by the specified state
+        results = [contact for contact in all_contacts if contact.state.lower() == state.lower()]
+        
         if results:
             print(f"\nSearch Results for State '{state}':")
             for result in results:
                 print(result)
             
+            # Count by city for the filtered results
             city_counts = Counter(contact.city.lower() for contact in results)
             print("\nContact Count by City:")
             for city_name, count in city_counts.items():
                 print(f"{city_name}: {count}")
 
+            # Count by state (will only show the searched state due to filter)
             state_counts = Counter(contact.state.lower() for contact in results)
             print("\nContact Count by State:")
             for state_name, count in state_counts.items():
@@ -325,19 +359,24 @@ class AddressBookSystem:
         """
         Description:
             Displays the total count of contacts grouped by city and state across all address books.
+
         Returns:
             None
         """
-        all_contacts = [contact for book in self.address_books.values() for contact in book.contacts]        
+        # Collect all contacts across address books
+        all_contacts = [contact for book in self.address_books.values() for contact in book.contacts]
+        
         if not all_contacts:
             print("No contacts available in any address book.")
             return
 
+        # Count by city
         city_counts = Counter(contact.city.lower() for contact in all_contacts)
         print("\nTotal Contact Count by City:")
         for city_name, count in sorted(city_counts.items()):
             print(f"{city_name}: {count}")
 
+        # Count by state
         state_counts = Counter(contact.state.lower() for contact in all_contacts)
         print("\nTotal Contact Count by State:")
         for state_name, count in sorted(state_counts.items()):
@@ -347,9 +386,6 @@ def main():
     """
     Description:
         Main function that provides a menu-driven interface for the address book system.
-    
-    Returns:
-        None
     """
     system = AddressBookSystem()
     
@@ -363,7 +399,8 @@ def main():
         print("7. Edit Contact")
         print("8. Delete Contact")
         print("9. Count Contacts by City and State")
-        print("10. Exit")
+        print("10. Display Contacts Sorted by Name")
+        print("11. Exit")
 
         choice = input("Enter your choice: ").strip()
 
@@ -430,6 +467,13 @@ def main():
         elif choice == "9":
             system.count_contacts_by_city_and_state()
         elif choice == "10":
+            book_name = input("Enter Address Book name: ").strip()
+            address_book = system.get_address_book(book_name)
+            if address_book:
+                address_book.display_contacts_sorted_by_name()
+            else:
+                print(f"Address Book '{book_name}' does not exist!")
+        elif choice == "11":
             print("Exiting...")
             break
         else:
