@@ -79,3 +79,11 @@
 2025-02-26 20:20:25,337 - INFO - Contact 'jiya sharma' added to new3.
 2025-02-27 10:18:59,238 - INFO - Address Book System - Logging started.
 2025-02-27 10:18:59,238 - INFO - Address Book System initialized.
+2025-02-27 10:19:39,023 - INFO - Address Book 'new4' created.
+2025-02-27 10:19:39,024 - INFO - Address Book 'new4' created.
+2025-02-27 10:22:40,119 - INFO - Contact created: shahid khan
+2025-02-27 10:22:40,119 - INFO - Contact 'shahid khan' added to new4.
+2025-02-27 10:24:21,812 - INFO - Contact created: Mohan verma
+2025-02-27 10:24:21,812 - INFO - Contact 'Mohan verma' added to new4.
+2025-02-27 10:25:01,838 - INFO - Displayed sorted contact: Mohan verma
+2025-02-27 10:25:01,838 - INFO - Displayed sorted contact: shahid khan
