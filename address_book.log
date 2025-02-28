@@ -101,3 +101,58 @@
 2025-02-27 11:06:47,829 - INFO - Contact 'Shivam Garg' added to new6.
 2025-02-27 11:07:36,298 - INFO - Displayed sorted contact: Priyanshu Garg
 2025-02-27 11:07:36,299 - INFO - Displayed sorted contact: Shivam Garg
+2025-02-28 07:39:35,663 - INFO - Address Book System - Logging started.
+2025-02-28 07:39:35,663 - INFO - Address Book System initialized.
+2025-02-28 08:05:26,136 - INFO - Address Book 'new_book' created.
+2025-02-28 08:05:26,137 - INFO - Address Book 'new_book' created.
+2025-02-28 08:08:07,199 - INFO - Contact created: Priyanshu Garg
+2025-02-28 08:08:07,200 - INFO - Contact 'Priyanshu Garg' added to new_book.
+2025-02-28 08:10:40,052 - INFO - Contact created: Arvind Girdhar
+2025-02-28 08:10:40,052 - INFO - Contact 'Arvind Girdhar' added to new_book.
+2025-02-28 08:15:05,479 - INFO - Address Book 'new_file' created.
+2025-02-28 08:15:05,480 - INFO - Address Book 'new_file' created.
+2025-02-28 08:16:29,683 - INFO - Contact created: Shivam sharma
+2025-02-28 08:16:29,684 - INFO - Contact 'Shivam sharma' added to new_file.
+2025-02-28 08:17:45,992 - INFO - Contact created: Priyanshu Garg
+2025-02-28 08:17:45,992 - INFO - Contact 'Priyanshu Garg' added to new_file.
+2025-02-28 08:19:21,984 - INFO - Address Book System - Logging started.
+2025-02-28 08:19:21,985 - INFO - Address Book System initialized.
+2025-02-28 08:19:35,896 - INFO - Address Book 'new_file' created.
+2025-02-28 08:19:35,896 - INFO - Address Book 'new_file' created.
+2025-02-28 08:21:18,588 - INFO - Contact created: sam vrma
+2025-02-28 08:21:18,589 - INFO - Contact 'sam vrma' added to new_file.
+2025-02-28 08:21:31,508 - INFO - Displayed Address Book: new_file
+2025-02-28 08:21:58,186 - INFO - Displayed sorted contact: sam vrma
+2025-02-28 09:38:20,175 - INFO - Address Book System - Logging started.
+2025-02-28 09:38:20,176 - INFO - Address Book System initialized.
+2025-02-28 09:38:33,822 - INFO - Address Book 'new4' created.
+2025-02-28 09:38:33,822 - INFO - Address Book 'new4' created.
+2025-02-28 09:39:59,041 - INFO - Contact created: Priyanshu Garg
+2025-02-28 09:39:59,042 - INFO - Contact 'Priyanshu Garg' added to new4.
+2025-02-28 09:40:37,760 - INFO - Saved new4 to Io_file.txt
+2025-02-28 10:00:54,419 - INFO - Address Book 'new6' created.
+2025-02-28 10:00:54,420 - INFO - Address Book 'new6' created.
+2025-02-28 10:02:47,048 - INFO - Contact created: Priyanshu Garg
+2025-02-28 10:02:47,049 - INFO - Contact 'Priyanshu Garg' added to new6.
+2025-02-28 10:04:11,387 - INFO - Displayed contact: Priyanshu Garg
+2025-02-28 10:05:43,368 - INFO - Saved new6 to Io_file.txt
+2025-02-28 10:09:00,670 - INFO - Address Book System - Logging started.
+2025-02-28 10:09:00,671 - INFO - Address Book System initialized.
+2025-02-28 10:09:21,530 - INFO - Address Book 'new7' created.
+2025-02-28 10:09:21,531 - INFO - Address Book 'new7' created.
+2025-02-28 10:10:11,544 - INFO - Contact created: ram garg
+2025-02-28 10:10:11,545 - INFO - Contact 'ram garg' added to new7.
+2025-02-28 10:10:40,140 - INFO - Saved new7 to c:\Users\Priyanshu\Documents\Address_Book_Problem\Address_Book_System\file.txt
+2025-02-28 10:15:55,566 - INFO - Address Book 'new8' created.
+2025-02-28 10:15:55,567 - INFO - Address Book 'new8' created.
+2025-02-28 10:16:54,095 - INFO - Contact created: sam verma
+2025-02-28 10:16:54,095 - INFO - Contact 'sam verma' added to new8.
+2025-02-28 10:17:35,624 - INFO - Saved new8 to c:\Users\Priyanshu\Documents\Address_Book_Problem\Address_Book_System\file.txt
+2025-02-28 10:34:29,784 - INFO - Address Book 'new9' created.
+2025-02-28 10:34:29,785 - INFO - Address Book 'new9' created.
+2025-02-28 10:35:15,070 - INFO - Contact created: dev garg
+2025-02-28 10:35:15,071 - INFO - Contact 'dev garg' added to new9.
+2025-02-28 10:35:37,324 - INFO - Saved new9 to c:\Users\Priyanshu\Documents\Address_Book_Problem\Address_Book_System\file.txt
+2025-02-28 10:36:05,810 - INFO - Contact created: dev garg
+2025-02-28 10:36:05,811 - WARNING - Duplicate contact 'dev garg' not added.
+2025-02-28 10:36:05,812 - INFO - Loaded new9 from c:\Users\Priyanshu\Documents\Address_Book_Problem\Address_Book_System\file.txt
