@@ -2,6 +2,7 @@ import re
 import logging
 import os
 from collections import Counter
+import csv  # Added required import for CSV functionality
 
 current_directory = os.path.dirname(os.path.abspath(__file__))
 os.makedirs(current_directory, exist_ok=True)
@@ -20,21 +21,13 @@ logging.info("Address Book System - Logging started.")
 class Contact:
     """
     Description:
-    Represents a contact in an address book with personal details.
+        Represents a contact in an address book with personal details.
+    Parameters:
+        None
+    Returns:
+        None
     """
     def __init__(self, first_name, last_name, phone, email, address, city, state, zip_code):
-        """
-        Initializes a new Contact object with the given details.
-        Parameters:
-            first_name (str): The first name of the contact.
-            last_name (str): The last name of the contact.
-            phone (str): The contact's phone number (10 or 12 digits).
-            email (str): The contact's email address.
-            address (str): The contact's street address.
-            city (str): The city where the contact resides.
-            state (str): The state where the contact resides.
-            zip_code (str): The postal ZIP code (must be exactly 6 digits).
-        """
         if not first_name or not last_name:
             raise ValueError("First name and last name cannot be empty.")
         if not re.match(r"^\d{10,12}$", phone):
@@ -53,11 +46,27 @@ class Contact:
         self.state = state
         self.zip_code = zip_code
         logging.info(f"Contact created: {self.first_name} {self.last_name}")
+    
+    def __eq__(self, other):
+        """
+        Description:
+            Checks equality between two contacts based on first and last names (case insensitive).
+        Parameters:
+            self,other
+        Returns:
+            bool: True if first and last names match (case insensitive), False otherwise.
+        """
+        if isinstance(other, Contact):
+            return (self.first_name.lower() == other.first_name.lower() and 
+                    self.last_name.lower() == other.last_name.lower())
+        return False
 
     def __hash__(self):
         """
         Description:
-            Defines a unique hash for a contact based on its first and last names.        
+            Defines a unique hash for a contact based on its first and last names.
+        Parameter:
+            self
         Returns:
             int: Hash of the contact's first and last names.
         """
@@ -67,6 +76,8 @@ class Contact:
         """
         Description:
             Returns a formatted string representation of the contact.
+        Parameter:
+            self
         Returns:
             str: Formatted contact details.
         """
@@ -75,7 +86,9 @@ class Contact:
 class AddressBook:
     """
     Description:
-    Represents an address book that stores multiple contacts.
+        Represents an address book that stores multiple contacts.
+    Returns:
+        None
     """
     def __init__(self, book_name):
         self.book_name = book_name
@@ -96,7 +109,7 @@ class AddressBook:
             state - State.
             zip_code - 6-digit postal code.
         Returns:
-            None
+            None.
         """
         try:
             contact = Contact(first_name, last_name, phone, email, address, city, state, zip_code)
@@ -114,6 +127,8 @@ class AddressBook:
         """
         Description:
             Displays all contacts in the address book.
+        Parameter:
+            self
         Returns:
             None
         """
@@ -130,6 +145,8 @@ class AddressBook:
         """
         Description:
             Displays all contacts in the address book sorted alphabetically by name (first then last).
+        Parameter:
+            self
         Returns:
             None
         """
@@ -138,7 +155,6 @@ class AddressBook:
             logging.info(f"{self.book_name} Address Book is empty.")
             return
         
-        # Sort contacts by first name then last name
         sorted_contacts = sorted(self.contacts, key=lambda contact: (contact.first_name.lower(), contact.last_name.lower()))
         print(f"\nContacts in {self.book_name} (Sorted by Name):")
         for contact in sorted_contacts:
@@ -149,6 +165,8 @@ class AddressBook:
         """
         Description:
             Displays all contacts in the address book sorted by ZIP code.
+        Parameter:
+            self
         Returns:
             None
         """
@@ -157,7 +175,6 @@ class AddressBook:
             logging.info(f"{self.book_name} Address Book is empty.")
             return
         
-        # Sort contacts by ZIP code
         sorted_contacts = sorted(self.contacts, key=lambda contact: contact.zip_code)
         print(f"\nContacts in {self.book_name} (Sorted by ZIP):")
         for contact in sorted_contacts:
@@ -217,54 +234,98 @@ class AddressBook:
     def save_to_file(self, filename):
         """
         Description:
-            Saves all contacts in the address book to a specified file.
+            Saves all contacts in the address book to a CSV file using the csv module.
         Parameters:
             self, filename
         Returns:
             None
         """
         try:
-            # Construct full file path
-            file_path = os.path.join(current_directory, filename)
-            # Ensure the directory exists
-            os.makedirs(os.path.dirname(file_path), exist_ok=True)
-            with open(file_path, 'w') as file:
+            with open(filename, 'w', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow(['first_name', 'last_name', 'phone', 'email', 'address', 'city', 'state', 'zip_code'])
                 for contact in self.contacts:
-                    line = f"{contact.first_name},{contact.last_name},{contact.phone},{contact.email},{contact.address},{contact.city},{contact.state},{contact.zip_code}\n"
-                    file.write(line)
-            logging.info(f"Saved {self.book_name} to {file_path}")
-            print(f"Address Book '{self.book_name}' saved to {file_path}.")
+                    writer.writerow([contact.first_name, contact.last_name, contact.phone, contact.email,
+                                   contact.address, contact.city, contact.state, contact.zip_code])
+            logging.info(f"Saved {self.book_name} to CSV file {filename}")
+            print(f"Address Book '{self.book_name}' saved to CSV file {filename}.")
         except Exception as e:
-            logging.error(f"Error saving to file {file_path}: {e}")
-            print(f"Error saving to file: {e}")
+            logging.error(f"Error saving to CSV file {filename}: {e}")
+            print(f"Error saving to CSV file: {e}")
 
     def load_from_file(self, filename):
         """
         Description:
-            Loads contacts from a specified file into the address book.
+            Loads contacts from a CSV file into the address book using the csv module.
         Parameters:
             self, filename
         Returns:
             None
         """
         try:
-            file_path = os.path.join(current_directory, filename)
-            with open(file_path, 'r') as file:
+            with open(filename, 'r', newline='') as file:
+                reader = csv.DictReader(file)
+                expected_fields = {'first_name', 'last_name', 'phone', 'email', 'address', 'city', 'state', 'zip_code'}
+                if not expected_fields.issubset(reader.fieldnames):
+                    raise ValueError("CSV file does not contain all required fields.")
+                for row in reader:
+                    self.add_contact(row['first_name'], row['last_name'], row['phone'], row['email'],
+                                   row['address'], row['city'], row['state'], row['zip_code'])
+            logging.info(f"Loaded {self.book_name} from CSV file {filename}")
+            print(f"Address Book '{self.book_name}' loaded from CSV file {filename}.")
+        except FileNotFoundError:
+            logging.info(f"No CSV file {filename} found, starting with empty address book.")
+            print(f"No CSV file {filename} found, starting with empty address book.")
+        except Exception as e:
+            logging.error(f"Error loading from CSV file {filename}: {e}")
+            print(f"Error loading from CSV file: {e}")
+
+    def save_to_text_file(self, filename):
+        """
+        Description:
+            Saves all contacts in the address book to a plain text file using basic File IO.
+        Parameters:
+            self, filename
+        Returns:
+            None
+        """
+        try:
+            with open(filename, 'w') as file:
+                for contact in self.contacts:
+                    line = f"{contact.first_name},{contact.last_name},{contact.phone},{contact.email},{contact.address},{contact.city},{contact.state},{contact.zip_code}\n"
+                    file.write(line)
+            logging.info(f"Saved {self.book_name} to plain text file {filename}")
+            print(f"Address Book '{self.book_name}' saved to plain text file {filename}.")
+        except Exception as e:
+            logging.error(f"Error saving to plain text file {filename}: {e}")
+            print(f"Error saving to plain text file: {e}")
+
+    def load_from_text_file(self, filename):
+        """
+        Description:
+            Loads contacts from a plain text file into the address book using basic File IO.
+        Parameters:
+            self, filename
+        Returns:
+            None
+        """
+        try:
+            with open(filename, 'r') as file:
                 for line in file:
                     fields = line.strip().split(',')
                     if len(fields) == 8:
                         first_name, last_name, phone, email, address, city, state, zip_code = fields
                         self.add_contact(first_name, last_name, phone, email, address, city, state, zip_code)
                     else:
-                        logging.warning(f"Skipping malformed line in {file_path}: {line.strip()}")
-            logging.info(f"Loaded {self.book_name} from {file_path}")
-            print(f"Address Book '{self.book_name}' loaded from {file_path}.")
+                        logging.warning(f"Skipping malformed line in {filename}: {line.strip()}")
+            logging.info(f"Loaded {self.book_name} from plain text file {filename}")
+            print(f"Address Book '{self.book_name}' loaded from plain text file {filename}.")
         except FileNotFoundError:
-            logging.info(f"No file {file_path} found, starting with empty address book.")
-            print(f"No file {file_path} found, starting with empty address book.")
+            logging.info(f"No plain text file {filename} found, starting with empty address book.")
+            print(f"No plain text file {filename} found, starting with empty address book.")
         except Exception as e:
-            logging.error(f"Error loading from file {file_path}: {e}")
-            print(f"Error loading from file: {e}")
+            logging.error(f"Error loading from plain text file {filename}: {e}")
+            print(f"Error loading from plain text file: {e}")
 
 class AddressBookSystem:
     """
@@ -280,11 +341,11 @@ class AddressBookSystem:
     def add_address_book(self, book_name):
         """
         Description:
-            Retrieves an address book by name.
+            Creates a new address book if it does not already exist.
         Parameters:
-            self, book_name.
+           self, book_name
         Returns:
-            AddressBook: The requested address book or None if not found.
+            None
         """
         if book_name in self.address_books:
             print(f"Address Book '{book_name}' already exists!")
@@ -299,7 +360,7 @@ class AddressBookSystem:
         Description:
             Retrieves an address book by name.
         Parameters:
-            self, book_name.
+            self, book_name
         Returns:
             AddressBook: The requested address book or None if not found.
         """
@@ -309,6 +370,8 @@ class AddressBookSystem:
         """
         Description:
             Displays all available address books.
+        Parameter:
+            self
         Returns:
             None
         """
@@ -320,32 +383,37 @@ class AddressBookSystem:
             for book_name in self.address_books:
                 print(f"- {book_name}")
                 logging.info(f"Displayed Address Book: {book_name}")
-
+    
     def search_person_city(self, city=None):
         """
         Description:
             Searches for contacts based on city across multiple address books and displays count by city and state.
         Parameters:
-            self, city 
+            self, city
         Returns:
             None
         """
         if not city:
             print("Please provide a city to search.")
             return
+
         all_contacts = [contact for book in self.address_books.values() for contact in book.contacts]
         if not all_contacts:
             print("No contacts available in any address book.")
             return
+
         results = [contact for contact in all_contacts if contact.city.lower() == city.lower()]
+        
         if results:
             print(f"\nSearch Results for City '{city}':")
             for result in results:
                 print(result)
+            
             city_counts = Counter(contact.city.lower() for contact in results)
             print("\nContact Count by City:")
             for city_name, count in city_counts.items():
                 print(f"{city_name}: {count}")
+
             state_counts = Counter(contact.state.lower() for contact in results)
             print("\nContact Count by State:")
             for state_name, count in state_counts.items():
@@ -365,19 +433,24 @@ class AddressBookSystem:
         if not state:
             print("Please provide a State to search.")
             return
+
         all_contacts = [contact for book in self.address_books.values() for contact in book.contacts]
         if not all_contacts:
             print("No contacts available in any address book.")
             return
+
         results = [contact for contact in all_contacts if contact.state.lower() == state.lower()]
+        
         if results:
             print(f"\nSearch Results for State '{state}':")
             for result in results:
                 print(result)
+            
             city_counts = Counter(contact.city.lower() for contact in results)
             print("\nContact Count by City:")
             for city_name, count in city_counts.items():
                 print(f"{city_name}: {count}")
+
             state_counts = Counter(contact.state.lower() for contact in results)
             print("\nContact Count by State:")
             for state_name, count in state_counts.items():
@@ -389,24 +462,36 @@ class AddressBookSystem:
         """
         Description:
             Displays the total count of contacts grouped by city and state across all address books.
+        Parameter:
+            self
         Returns:
             None
         """
         all_contacts = [contact for book in self.address_books.values() for contact in book.contacts]
+        
         if not all_contacts:
             print("No contacts available in any address book.")
             return
+
         city_counts = Counter(contact.city.lower() for contact in all_contacts)
         print("\nTotal Contact Count by City:")
         for city_name, count in sorted(city_counts.items()):
             print(f"{city_name}: {count}")
+
         state_counts = Counter(contact.state.lower() for contact in all_contacts)
         print("\nTotal Contact Count by State:")
         for state_name, count in sorted(state_counts.items()):
             print(f"{state_name}: {count}")
 
 def main():
+    """
+    Description:
+        Main function that provides a menu-driven interface for the address book system.
+    Returns:
+        None
+    """
     system = AddressBookSystem()
+    
     while True:
         print("\n1. Add Address Book")
         print("2. Add Contact to Address Book")
@@ -419,10 +504,14 @@ def main():
         print("9. Count Contacts by City and State")
         print("10. Display Contacts Sorted by Name")
         print("11. Display Contacts Sorted by ZIP")
-        print("12. Save Address Book to File")
-        print("13. Load Address Book from File")
-        print("14. Exit")
+        print("12. Save Address Book to IO File")
+        print("13. Load Address Book from IO File")
+        print("14. Save Address Book to CSV File")
+        print("15. Load Address Book from CSV File")
+        print("16. Exit")
+
         choice = input("Enter your choice: ").strip()
+
         if choice == "1":
             book_name = input("Enter Address Book name: ").strip()
             system.add_address_book(book_name)
@@ -504,7 +593,7 @@ def main():
             address_book = system.get_address_book(book_name)
             if address_book:
                 filename = input("Enter plain IO filename to save to (e.g., 'book.txt'): ").strip()
-                address_book.save_to_file(filename)
+                address_book.save_to_text_file(filename)
             else:
                 print(f"Address Book '{book_name}' does not exist!")
         elif choice == "13":
@@ -512,10 +601,26 @@ def main():
             address_book = system.get_address_book(book_name)
             if address_book:
                 filename = input("Enter plain IO filename to load from (e.g., 'book.txt'): ").strip()
-                address_book.load_from_file(filename)
+                address_book.load_from_text_file(filename)
             else:
                 print(f"Address Book '{book_name}' does not exist!")
         elif choice == "14":
+            book_name = input("Enter Address Book name: ").strip()
+            address_book = system.get_address_book(book_name)
+            if address_book:
+                filename = input("Enter CSV filename to save to (e.g., 'book.csv'): ").strip()
+                address_book.save_to_file(filename)
+            else:
+                print(f"Address Book '{book_name}' does not exist!")
+        elif choice == "15":
+            book_name = input("Enter Address Book name: ").strip()
+            address_book = system.get_address_book(book_name)
+            if address_book:
+                filename = input("Enter CSV filename to load from (e.g., 'book.csv'): ").strip()
+                address_book.load_from_file(filename)
+            else:
+                print(f"Address Book '{book_name}' does not exist!")
+        elif choice == "16":
             print("Exiting...")
             break
         else:

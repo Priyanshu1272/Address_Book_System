@@ -156,3 +156,42 @@
 2025-02-28 10:36:05,810 - INFO - Contact created: dev garg
 2025-02-28 10:36:05,811 - WARNING - Duplicate contact 'dev garg' not added.
 2025-02-28 10:36:05,812 - INFO - Loaded new9 from c:\Users\Priyanshu\Documents\Address_Book_Problem\Address_Book_System\file.txt
+2025-02-28 10:55:44,374 - INFO - Address Book System - Logging started.
+2025-02-28 10:55:44,374 - INFO - Address Book System initialized.
+2025-02-28 10:57:24,724 - INFO - Address Book System - Logging started.
+2025-02-28 10:57:24,725 - INFO - Address Book System initialized.
+2025-02-28 11:05:33,713 - INFO - Address Book System - Logging started.
+2025-02-28 11:05:33,714 - INFO - Address Book System initialized.
+2025-02-28 11:05:58,700 - INFO - Address Book 'new10' created.
+2025-02-28 11:05:58,701 - INFO - Address Book 'new10' created.
+2025-02-28 11:06:36,492 - INFO - Contact created: Priyanshu garg
+2025-02-28 11:06:36,492 - INFO - Contact 'Priyanshu garg' added to new10.
+2025-02-28 11:07:18,251 - INFO - Saved new10 to c:\Users\Priyanshu\Documents\Address_Book_Problem\Address_Book_System\file.txt
+2025-02-28 11:08:18,716 - INFO - Saved new10 to CSV file file.csv
+2025-02-28 11:27:48,211 - INFO - Address Book 'new11' created.
+2025-02-28 11:27:48,213 - INFO - Address Book 'new11' created.
+2025-02-28 11:28:28,369 - INFO - Contact created: sam garg
+2025-02-28 11:28:28,369 - INFO - Contact 'sam garg' added to new11.
+2025-02-28 11:28:52,851 - INFO - Saved new11 to c:\Users\Priyanshu\Documents\Address_Book_Problem\Address_Book_System\file.txt
+2025-02-28 11:29:56,218 - INFO - Saved new11 to CSV file file1.csv
+2025-02-28 11:34:00,073 - INFO - Address Book 'new12' created.
+2025-02-28 11:34:00,074 - INFO - Address Book 'new12' created.
+2025-02-28 11:34:52,549 - INFO - Contact created: garv garg
+2025-02-28 11:34:52,549 - INFO - Contact 'garv garg' added to new12.
+2025-02-28 11:35:09,550 - INFO - Saved new12 to c:\Users\Priyanshu\Documents\Address_Book_Problem\Address_Book_System\file.txt
+2025-02-28 11:35:46,132 - INFO - Saved new12 to CSV file file2.csv
+2025-02-28 11:40:33,285 - INFO - Address Book 'new13' created.
+2025-02-28 11:40:33,285 - INFO - Address Book 'new13' created.
+2025-02-28 11:41:17,720 - INFO - Contact created: ram garg
+2025-02-28 11:41:17,721 - INFO - Contact 'ram garg' added to new13.
+2025-02-28 11:41:43,499 - INFO - Saved new13 to c:\Users\Priyanshu\Documents\Address_Book_Problem\Address_Book_System\file.txt
+2025-02-28 11:42:21,687 - INFO - Saved new13 to CSV file file4.csv
+2025-02-28 11:52:55,114 - INFO - Address Book 'new15' created.
+2025-02-28 11:52:55,115 - INFO - Address Book 'new15' created.
+2025-02-28 11:53:22,111 - INFO - Address Book System - Logging started.
+2025-02-28 11:53:22,113 - INFO - Address Book System initialized.
+2025-02-28 11:53:32,429 - INFO - Address Book 'new15' created.
+2025-02-28 11:53:32,430 - INFO - Address Book 'new15' created.
+2025-02-28 11:54:14,395 - INFO - Contact created: sam garg
+2025-02-28 11:54:14,395 - INFO - Contact 'sam garg' added to new15.
+2025-02-28 11:54:28,798 - INFO - Saved new15 to plain text file file.txt
